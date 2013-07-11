@@ -225,6 +225,9 @@ public:
 	/// @param[in] instancer The context's instancer.
 	void SetInstancer(ContextInstancer* instancer);
 
+	/// Dirty Style properties of all document elements
+	void DirtyAllStyleProperties();
+	
 protected:
 	virtual void OnReferenceDeactivate();
 
@@ -291,6 +294,9 @@ private:
 	RenderInterface* render_interface;
 	Vector2i clip_origin;
 	Vector2i clip_dimensions;
+
+	// Resolution independence factor
+	float resolutionIndependenceFactor;
 
 	// Internal callback for when an element is removed from the hierarchy.
 	void OnElementRemove(Element* element);

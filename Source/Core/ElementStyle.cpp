@@ -363,6 +363,11 @@ float ElementStyle::ResolveProperty(const Property* property, float base_value)
 		return property->value.Get< float >();
 	}
 
+	if (property->unit & Property::RI)  
+	{
+		return property->value.Get< float >() * ElementUtilities::GetResolutionIndependenceFactor();
+	}
+
 	// We're not a numeric property; return 0.
 	return 0.0f;
 }
@@ -410,6 +415,11 @@ float ElementStyle::ResolveProperty(const String& name, float base_value)
 	if (property->unit & Property::NUMBER || property->unit & Property::PX)
 	{
 		return property->value.Get< float >();
+	}
+
+	if (property->unit & Property::RI) 
+	{
+		return property->value.Get< float >() * ElementUtilities::GetResolutionIndependenceFactor();
 	}
 
 	// We're not a numeric property; return 0.

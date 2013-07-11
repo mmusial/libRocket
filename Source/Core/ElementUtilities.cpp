@@ -156,6 +156,10 @@ int ElementUtilities::GetLineHeight(Element* element)
 	else if (line_height_property->unit == Property::PX)
 		return Math::Round(line_height_property->value.Get< float >());
 
+	// Otherwise, we're a ri measurement.
+	else if (line_height_property->unit == Property::RI)
+		return Math::Round(line_height_property->value.Get< float >() * ElementUtilities::GetResolutionIndependenceFactor());
+
 	return 0;
 }
 
@@ -360,6 +364,23 @@ bool ElementUtilities::PositionElement(Element* element, const Vector2f& offset,
 
 	return true;
 }
+
+
+
+static float g_resolutionIndependenceFactor = 1.0f;
+float ElementUtilities::GetResolutionIndependenceFactor()
+{
+	return g_resolutionIndependenceFactor;
+}
+
+
+
+void ElementUtilities::SetResolutionIndependenceFactor(float resolutionIndependenceFactor)
+{
+	g_resolutionIndependenceFactor = resolutionIndependenceFactor;
+}
+
+
 /*
 // Returns true if the element is visible within the current clipping region (if any), false if not.
 static bool IsElementVisible(const Element* ROCKET_UNUSED(element))

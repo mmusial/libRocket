@@ -637,6 +637,7 @@ private:
 	void DirtyStackingContext();
 
 	void DirtyStructure();
+	void DirtyStyleProperties();
 
 	// Original tag this element came from.
 	String tag;

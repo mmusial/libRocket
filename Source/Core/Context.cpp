@@ -73,6 +73,8 @@ Context::Context(const String& name) : name(name), mouse_position(0, 0), dimensi
 
 	last_click_element = NULL;
 	last_click_time = 0;
+
+	resolutionIndependenceFactor = 1.0f;
 }
 
 Context::~Context()
@@ -832,6 +834,23 @@ void Context::SetInstancer(ContextInstancer* _instancer)
 	instancer = _instancer;
 	instancer->AddReference();	
 }
+
+
+
+/// Sets resolution independence factor
+void Context::DirtyAllStyleProperties()
+{
+	for (int i = 0; i < root->GetNumChildren(); ++i) 
+	{
+		ElementDocument* document = root->GetChild(i)->GetOwnerDocument();
+		if (document != NULL) 
+		{
+			document->DirtyStyleProperties();
+		}
+	}
+}
+
+
 
 // Internal callback for when an element is removed from the hierarchy.
 void Context::OnElementRemove(Element* element)

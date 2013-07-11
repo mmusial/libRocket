@@ -68,7 +68,10 @@ public:
 		MM = 1 << 10,				// number suffixed by 'mm'; fetch as < float >
 		PT = 1 << 11,				// number suffixed by 'pt'; fetch as < float >
 		PC = 1 << 12,				// number suffixed by 'pc'; fetch as < float >
-		PPI_UNIT = INCH | CM | MM | PT | PC
+		PPI_UNIT = INCH | CM | MM | PT | PC,
+
+		// resolution independent
+		RI = 1 << 13				// number suffixed by 'px'; fetch as < float >
 	};
 
 	Property();

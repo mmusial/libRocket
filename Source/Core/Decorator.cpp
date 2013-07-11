@@ -120,6 +120,9 @@ float Decorator::ResolveProperty(const PropertyDictionary& properties, const Str
 	if (property->unit & Property::NUMBER || property->unit & Property::PX)
 		return property->value.Get< float >();
 
+	if (property->unit & Property::RI)
+		return property->value.Get< float >() * ElementUtilities::GetResolutionIndependenceFactor();
+
 	ROCKET_ERROR;
 	return 0;
 }

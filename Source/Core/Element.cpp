@@ -1967,5 +1967,22 @@ void Element::DirtyStructure()
 	}
 }
 
+void Element::DirtyStyleProperties()
+{
+	// Clear the cached owner document
+	owner_document = NULL;
+
+	// Inform all children that the structure is drity
+	for (size_t i = 0; i < children.size(); ++i) 
+	{
+		if (children[i]->GetStyle()) 
+		{
+			children[i]->GetStyle()->DirtyProperties();
+		}
+
+		children[i]->DirtyStyleProperties();
+	}
+}
+
 }
 }

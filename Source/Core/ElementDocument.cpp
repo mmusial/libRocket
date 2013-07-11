@@ -354,6 +354,7 @@ void ElementDocument::DirtyLayout()
 	layout_dirty = true;
 }
 
+
 bool ElementDocument::IsLayoutDirty()
 {
 	return layout_dirty;

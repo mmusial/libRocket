@@ -139,6 +139,9 @@ public:
 	/// @param offset[in] The offset from the parent's borders.
 	/// @param anchor[in] Defines which corner or edge the border is to be positioned relative to.
 	static bool PositionElement(Element* element, const Vector2f& offset, PositionAnchor anchor);
+	/// Resurns resolution independent factor
+	static float GetResolutionIndependenceFactor();
+	static void SetResolutionIndependenceFactor(float resolutionIndependenceFactor);
 };
 
 }
